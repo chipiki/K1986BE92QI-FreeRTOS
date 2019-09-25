@@ -37,9 +37,6 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask, char *pcTaskName  );
 
 QueueHandle_t xUART2RXQueue;
 
-uint32_t timestamp;
-
-
 /* Functions -----------------------------------------------------------------*/
 
 void configLED( void ){
