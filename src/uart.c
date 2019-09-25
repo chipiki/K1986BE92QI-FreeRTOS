@@ -18,7 +18,7 @@ void UART2_Send(char* buf, unsigned int buf_size)
 {
 	unsigned int index;
 	for(index = 0; index < buf_size; index++){
-		/* Check TXFE flag */
+		// Check TXFE flag
 		while (UART_GetFlagStatus(MDR_UART2, UART_FLAG_TXFE ) != SET);
 		UART_SendData(MDR_UART2, (uint8_t) buf[index]);
 	}
@@ -30,14 +30,13 @@ void UART2_SendStr(char *buf)
 }
 
 void init_UART2( void ){
-	/* Enables the HSI clock on PORTC, PORTD */
+	// Enables the HSI clock on PORTC, PORTD
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTF, ENABLE);
 
-	/* Enables the CPU_CLK clock on UART2 */
+	// Enables the CPU_CLK clock on UART2
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_UART2, ENABLE);
 
-
-	/* Fill PortInit structure */
+	// Fill PortInit structure
 	UART_PORT_InitStructure.PORT_PULL_UP = PORT_PULL_UP_ON;
 	UART_PORT_InitStructure.PORT_PULL_DOWN = PORT_PULL_DOWN_OFF;
 	UART_PORT_InitStructure.PORT_PD_SHM = PORT_PD_SHM_OFF;
@@ -47,42 +46,40 @@ void init_UART2( void ){
 	UART_PORT_InitStructure.PORT_SPEED = PORT_SPEED_MAXFAST;
 	UART_PORT_InitStructure.PORT_MODE = PORT_MODE_DIGITAL;
 
-	/* Configure PORTF pin 0 (UART2_RX) as input */
+	// Configure PORTF pin 0 (UART2_RX) as input
 	UART_PORT_InitStructure.PORT_OE = PORT_OE_IN;
 	UART_PORT_InitStructure.PORT_Pin = PORT_Pin_0;
 	PORT_Init(MDR_PORTF, &UART_PORT_InitStructure);
 
-	/* Configure PORTF pin 1 (UART2_TX) as output */
+	// Configure PORTF pin 1 (UART2_TX) as output
 	UART_PORT_InitStructure.PORT_OE = PORT_OE_OUT;
 	UART_PORT_InitStructure.PORT_Pin = PORT_Pin_1;
 	PORT_Init(MDR_PORTF, &UART_PORT_InitStructure);
 
 
-	/* Set the HCLK division factor = 1 for UART1,UART2 */
+	// Set the HCLK division factor = 1 for UART1,UART2
 	UART_BRGInit(MDR_UART2, UART_HCLKdiv1 );
 	NVIC_EnableIRQ( UART2_IRQn );
 
-	/* Initialize UART_InitStructure */
+	// Initialize UART_InitStructure
 	UART_InitStructure.UART_BaudRate = 9600;
 	UART_InitStructure.UART_WordLength = UART_WordLength8b;
 	UART_InitStructure.UART_StopBits = UART_StopBits1;
 	UART_InitStructure.UART_Parity = UART_Parity_No;
 	UART_InitStructure.UART_FIFOMode = UART_FIFO_OFF;
-	/*	UART_InitStructure.UART_FIFOMode = UART_FIFO_OFF; */
-	UART_InitStructure.UART_HardwareFlowControl = UART_HardwareFlowControl_RXE
-			| UART_HardwareFlowControl_TXE;
+	UART_InitStructure.UART_HardwareFlowControl = UART_HardwareFlowControl_RXE | UART_HardwareFlowControl_TXE;
 
-	/* Configure UART2 parameters */
+	// Configure UART2 parameters
 	UART_Init(MDR_UART2, &UART_InitStructure);
 
-	/* Configure DMA for UART2 */
+	// Configure DMA for UART2
 	UART_DMAConfig(MDR_UART2, UART_IT_FIFO_LVL_2words,	UART_IT_FIFO_LVL_14words );
 	UART_DMACmd(MDR_UART2, UART_DMA_TXE, ENABLE); // | UART_DMA_ONERR
 
-	/* Configure UART2 receive interrupt */
+	// Configure UART2 receive interrupt
 	UART_ITConfig(MDR_UART2, UART_IT_RX, ENABLE);
 
-	/* Enables UART2 peripheral */
+	// Enables UART2 peripheral
 	UART_Cmd(MDR_UART2, ENABLE);
 
 	NVIC_EnableIRQ(UART2_IRQn);
@@ -149,15 +146,8 @@ void UART2_IRQHandler(void)
 
 	uint16_t rx;
 
-	//struct CAN_Message *pxCANMessage;
-
-	//CAN_RxMsgTypeDef RxMessage = {0};
-
-	/* We have not woken a task at the start of the ISR. */
+	// We have not woken a task at the start of the ISR.
 	xHigherPriorityTaskWoken = pdFALSE;
-
-	//pxCANMessage = & xCANMessage;
-	//pxCANMessage->timestamp = 0;
 
 	if (UART_GetITStatusMasked(MDR_UART2, UART_IT_RX) == SET)
 	{
@@ -169,7 +159,7 @@ void UART2_IRQHandler(void)
 	UART_ClearITPendingBit(MDR_UART2, UART_IT_RX);
 	//NVIC_ClearPendingIRQ(UART2_IRQn);
 
-	/* Now the buffer is empty we can switch context if necessary. */
+	// Now the buffer is empty we can switch context if necessary.
 	if( xHigherPriorityTaskWoken )
 	{
 		/* Actual macro used here is port specific. */
