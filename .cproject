@@ -42,6 +42,10 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm.887753235" name="Remove command" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.command.rm" useByScannerDiscovery="false" value="rm" valueType="string"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id.27702159" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.toolchain.id" useByScannerDiscovery="false" value="962691777" valueType="string"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.other.71925150" name="Other optimization flags" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.optimization.other" useByScannerDiscovery="true" value="" valueType="string"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.allwarn.552600483" name="Enable all common warnings (-Wall)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.allwarn" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.extrawarn.618754473" name="Enable extra warnings (-Wextra)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.extrawarn" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.uninitialized.767303125" name="Warn on uninitialized variables (-Wuninitialised)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.uninitialized" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.unused.386263075" name="Warn on various unused elements (-Wunused)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.unused" useByScannerDiscovery="true" value="true" valueType="boolean"/>
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform.360869815" isAbstract="false" osList="all" superClass="ilg.gnuarmeclipse.managedbuild.cross.targetPlatform"/>
 							<builder buildPath="${workspace_loc:/K1986BE92QI-test}/Debug" id="ilg.gnuarmeclipse.managedbuild.cross.builder.1777695380" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="ilg.gnuarmeclipse.managedbuild.cross.builder"/>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.1934846818" name="GNU ARM Cross Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler">
@@ -64,7 +68,6 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.570887322" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="true"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths.454370376" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths" useByScannerDiscovery="true" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SPL/Config}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/bldc_lib/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SPL/CMSIS/CM3/DeviceSupport/MDR32F9Qx/startup}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SPL/CMSIS/CM3/CoreSupport}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/SPL/CMSIS/CM3/DeviceSupport/MDR32F9Qx/inc}&quot;"/>
@@ -108,8 +111,17 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.650435695.244536707" name="mpu_wrappers.c" rcbsApplicability="disable" resourcePath="FreeRTOS/portable/Common/mpu_wrappers.c" toolsToInvoke="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1732116902.1466998366">
+						<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1732116902.1466998366" name="GNU ARM Cross C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1732116902"/>
+						<tool customBuildStep="true" id="org.eclipse.cdt.managedbuilder.ui.rcbs.2043438405" name="Resource Custom Build Step">
+							<inputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.inputtype.1088766837" name="Resource Custom Build Step Input Type">
+								<additionalInput kind="additionalinputdependency" paths=""/>
+							</inputType>
+							<outputType id="org.eclipse.cdt.managedbuilder.ui.rcbs.outputtype.961225816" name="Resource Custom Build Step Output Type"/>
+						</tool>
+					</fileInfo>
 					<sourceEntries>
-						<entry excluding="bldc_lib/inc/bldc_config.h|bldc_lib/inc/control.h|bldc_lib/src/control.c|bldc_lib/src/bldc-common.c|bldc_lib/inc/bldc-common.h|bldc_lib/inc/rk.h|bldc_lib/inc/pwm.h|bldc_lib/inc/hall.h|bldc_lib/src/rk.c|bldc_lib/src/pwm.c|bldc_lib/src/hall.c|bldc_lib/src/bldc.c|bldc_lib/inc/bldc.h|bldc_lib/inc/PID.h|bldc_lib/src/PID.c|src/systick.c|FreeRTOS/portable/MemMang/heap_5.c|FreeRTOS/portable/MemMang/heap_3.c|FreeRTOS/portable/MemMang/heap_2.c|FreeRTOS/portable/MemMang/heap_1.c|FreeRTOS/portable/MSVC-MingW|src/valve_address_determination.c|src/SPO_program_loader.c|src/PID.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_mil_std_1553.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_arinc429t.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_arinc429r.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_eth.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="FreeRTOS/portable/Common/mpu_wrappers.c|bldc_lib/inc/bldc_config.h|bldc_lib/inc/control.h|bldc_lib/src/control.c|bldc_lib/src/bldc-common.c|bldc_lib/inc/bldc-common.h|bldc_lib/inc/rk.h|bldc_lib/inc/pwm.h|bldc_lib/inc/hall.h|bldc_lib/src/rk.c|bldc_lib/src/pwm.c|bldc_lib/src/hall.c|bldc_lib/src/bldc.c|bldc_lib/inc/bldc.h|bldc_lib/inc/PID.h|bldc_lib/src/PID.c|src/systick.c|FreeRTOS/portable/MemMang/heap_5.c|FreeRTOS/portable/MemMang/heap_3.c|FreeRTOS/portable/MemMang/heap_2.c|FreeRTOS/portable/MemMang/heap_1.c|FreeRTOS/portable/MSVC-MingW|src/valve_address_determination.c|src/SPO_program_loader.c|src/PID.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_mil_std_1553.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_arinc429t.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_arinc429r.c|SPL/MDR32F9Qx_StdPeriph_Driver/src/MDR32F9Qx_eth.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

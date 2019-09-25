@@ -10,10 +10,6 @@
 
 #define USE_HSE				1
 //#define USE_HSI				1
-#define ENABLE_CAN1			1
-#define ENABLE_CAN2			1
-
-#define USE_SVPWM_BLDC		1
 
 void clock_configure(void);
 void init_all_ports ( void );

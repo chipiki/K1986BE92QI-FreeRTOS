@@ -35,9 +35,6 @@ void vApplicationTickHook( void );
 void vApplicationMallocFailedHook( void );
 void vApplicationStackOverflowHook( TaskHandle_t xTask, char *pcTaskName  );
 
-QueueHandle_t xARINC429rUartQueue;
-QueueHandle_t xARINC429rUSBQueue;
-
 QueueHandle_t xUART2RXQueue;
 
 uint32_t timestamp;
